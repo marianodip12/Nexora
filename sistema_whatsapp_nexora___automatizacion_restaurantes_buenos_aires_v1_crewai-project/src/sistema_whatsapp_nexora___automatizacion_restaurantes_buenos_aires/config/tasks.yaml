@@ -1,0 +1,106 @@
+---
+build_flask_whatsapp_webhook_server:
+  description: |-
+    Create a complete Flask webhook server with POST /webhook and GET /webhook endpoints. The server must:
+    1. Handle WhatsApp Cloud API webhook verification (verify token: "nexora2024")
+    2. Process incoming messages and respond in Spanish
+    3. Implement exact conversation flow: Cliente writes any message → Bot responds with main menu options
+    4. Handle 4 intents: ver menú, hacer pedido, consultar horario, hablar con humano
+    5. Use environment variables: WHATSAPP_TOKEN, WHATSAPP_PHONE_ID, WHATSAPP_BUSINESS_ID
+    6. Integrate PostgreSQL for order storage
+    7. Respond within 2 seconds
+    8. Include proper error handling and logging
+
+    Use the conversation handler tool to test the Spanish conversation logic and WhatsApp messenger tool to verify API integration.
+  expected_output: |-
+    Complete Python Flask application code including:
+    - app.py with webhook endpoints
+    - Database schema and models for orders
+    - Spanish conversation flow implementation
+    - WhatsApp API integration code
+    - Error handling and logging
+    - Code documentation and setup instructions
+  agent: senior_python_developer___whatsapp_bot_specialist
+prospecting_de_restaurantes_buenos_aires:
+  description: 'Investigar y prospectar restaurantes en Buenos Aires usando Google
+    Maps para identificar potenciales clientes. Crear mensajes de acercamiento personalizados
+    en espanol para WhatsApp que comuniquen el valor de la automatizacion. Investigar
+    precios de mercado de servicios similares en Argentina. IMPORTANTE: NO enviar
+    mensajes reales hasta recibir aprobacion explicita del CEO Agent. Solo preparar
+    la estrategia de outreach y lista de prospects.'
+  expected_output: 'Reporte de prospecting que incluye: lista de 20+ restaurantes
+    target en Buenos Aires con datos de contacto, mensajes de acercamiento personalizados
+    en espanol, investigacion de precios de mercado en pesos argentinos, estrategia
+    de outreach recomendada, y confirmacion de que NO se enviaron mensajes sin aprobacion.'
+  agent: sales_agent___prospector_de_restaurantes
+  async_execution: true
+test_all_conversation_flows:
+  description: "Comprehensively test all 4 WhatsApp conversation flows before deployment:\n1.
+    **Ver menú**: Test menu display flow with proper Spanish formatting\n2. **Hacer
+    pedido**: Test complete ordering process item-by-item with confirmation and total
+    calculation  \n3. **Consultar horario**: Test business hours display\n4. **Hablar
+    con humano**: Test human transfer functionality\n\nPerformance requirements:\n-
+    Verify all responses are under 2 seconds\n- Test edge cases (invalid inputs, empty
+    messages, special characters)\n- Validate Spanish text encoding and restaurant
+    terminology\n- Test conversation state management between interactions\n\nDocument
+    any bugs with reproduction steps and severity levels. Report critical issues immediately."
+  expected_output: |-
+    Comprehensive testing report including:
+    - Test results for all 4 conversation flows
+    - Performance benchmarks (response times)
+    - Bug report with reproduction steps and severity
+    - Spanish language validation results
+    - Edge case test results
+    - Pass/fail status for each flow with detailed feedback
+  agent: qa_engineer___chatbot_testing_specialist
+  context:
+  - build_flask_whatsapp_webhook_server
+generate_deployment_configuration:
+  description: "Generate all necessary deployment files for Render.com free tier deployment:\n\n1.
+    **requirements.txt**: Include flask, requests, psycopg2-binary, python-dotenv,
+    gunicorn\n2. **Procfile**: Configure Flask app for Render.com \n3. **Environment
+    Variables Template**: Document all required variables\n   - WHATSAPP_TOKEN\n   -
+    WHATSAPP_PHONE_ID (1023864807478829)  \n   - WHATSAPP_BUSINESS_ID (1442506013945140)\n
+    \  - DATABASE_URL (PostgreSQL)\n4. **Deployment Instructions**: Step-by-step Render.com
+    setup guide\n\nEnsure all configurations follow Render.com best practices and
+    are optimized for free tier limitations. Include webhook URL format and Meta configuration
+    instructions."
+  expected_output: |-
+    Complete deployment package including:
+    - requirements.txt file with all dependencies
+    - Procfile for Render.com
+    - .env.example with all required environment variables
+    - Detailed deployment instructions for Render.com
+    - Webhook URL configuration guide for Meta
+    - Post-deployment testing checklist
+  agent: devops_engineer___deployment_specialist
+  context:
+  - test_all_conversation_flows
+supervision_estrategica_del_desarrollo:
+  description: 'Supervisar el desarrollo completo del webhook de WhatsApp, revisar
+    cada entregable del equipo tecnico, validar que cumple con los estandares de calidad
+    requeridos, revisar el reporte de prospecting de ventas, y tomar decisiones estrategicas
+    sobre el producto y la comercializacion. IMPORTANTE: Antes de aprobar el despliegue
+    final, DEBE solicitar aprobacion explicita del operador humano via WhatsApp (OPERATOR_PHONE).
+    Presentar resumen final en espanol con recomendaciones de pricing entre $25.000-$35.000
+    ARS mensuales.'
+  expected_output: 'Informe ejecutivo en espanol que incluye: evaluacion de calidad
+    del desarrollo, evaluacion del plan de ventas, decision sobre deployment, analisis
+    de costos, estrategia de pricing recomendada, proximos pasos del negocio, y confirmacion
+    de que se solicito aprobacion del operador antes del deployment.'
+  agent: ceo_agent___director_estrategico
+  context:
+  - build_flask_whatsapp_webhook_server
+  - test_all_conversation_flows
+  - generate_deployment_configuration
+  - prospecting_de_restaurantes_buenos_aires
+actualizar_codigo_con_variables_reales:
+  description: Actualizar el código Flask del webhook para usar el VERIFY_TOKEN correcto
+    "nexora2026" en lugar de "nexora2024". Generar el código final listo para deployment
+    con todas las variables de entorno correctas.
+  expected_output: Código Flask actualizado con el VERIFY_TOKEN correcto y listo para
+    deployment, incluyendo todos los archivos necesarios (app.py, models.py, requirements.txt,
+    Procfile, .env.example).
+  agent: senior_python_developer___whatsapp_bot_specialist
+  context:
+  - supervision_estrategica_del_desarrollo

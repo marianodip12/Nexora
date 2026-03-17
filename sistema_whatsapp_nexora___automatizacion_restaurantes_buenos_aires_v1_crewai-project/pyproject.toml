@@ -1,0 +1,24 @@
+[project]
+name = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires"
+version = "0.1.0"
+description = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[litellm,tools]==1.10.1",
+]
+
+[project.scripts]
+sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires.main:run"
+run_crew = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires.main:run"
+train = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires.main:train"
+replay = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires.main:replay"
+test = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires.main:test"
+run_with_trigger = "sistema_whatsapp_nexora___automatizacion_restaurantes_buenos_aires.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
